@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Médico</title>
+    <link rel="stylesheet" href="medico.css">
+</head>
+<body>
+    <div class="header">
+        <button class="home-btn" onclick="goHome()">&#9664; Início</button>
+        <h1>Área do Médico</h1>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn" onclick="openTab('consultas')">Consultas</button>
+        <button class="tab-btn" onclick="openTab('pacientes')">Pacientes</button>
+        <button class="tab-btn" onclick="openTab('horas')">Horas</button>
+    </div>
+
+    <!-- O restante do seu HTML permanece inalterado -->
+
+    <div id="consultas" class="tab-content">
+        <!-- Conteúdo da aba de Consultas -->
+        <h2>Consultas</h2>
+        <ul id="consultas-list">
+            <!-- Lista de consultas agendadas -->
+        </ul>
+    </div>
+
+    <div id="pacientes" class="tab-content">
+        <!-- Conteúdo da aba de Pacientes -->
+        <h2>Pacientes</h2>
+        <ul id="pacientes-list">
+            <!-- Lista de pacientes -->
+        </ul>
+    </div>
+
+    <div id="horas" class="tab-content">
+        <!-- Conteúdo da aba de Horas -->
+        <h2>Horário</h2>
+        <ul id="horas-list">
+            <!-- Lista de horários disponíveis -->
+        </ul>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #00a6fb;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .tabs {
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .tab-btn {
+            background-color: #00a6fb;
+            color: #fff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content h2 {
+            color: #333;
+        }
+
+        .tab-content p {
+            color: #666;
+        }
+    </style>
+
+    <script>
+        function openTab(tabName) {
+            var tabs = document.getElementsByClassName("tab-content");
+
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = "none";
+            }
+
+            document.getElementById(tabName).style.display = "block";
+
+            // Adicionar exemplos de dados quando a aba é aberta
+            if (tabName === 'consultas') {
+                populateConsultas();
+            } else if (tabName === 'pacientes') {
+                populatePacientes();
+            } else if (tabName === 'horas') {
+                populateHoras();
+            }
+        }
+
+        function populateConsultas() {
+            var consultasList = document.getElementById('consultas-list');
+            consultasList.innerHTML = ''; // Limpa a lista antes de adicionar exemplos
+
+            // Exemplos de consultas agendadas
+            // var consultas = ['Consulta com Paciente X - 10:00', 'Consulta com Paciente Y - 14:30', 'Consulta com Paciente C - 16:45'];
+            var consultas = ['<%- consultas.join("','") %>'];
+            // var consultas = <%- consultas.join("','") %>;
+            // var consultas = <%- consultas %>;
+            <% console.log(`EJS:tmedico -> ${consultas}`); %>
+
+            console.log(consultas);
+            consultas.forEach(function (consulta) {
+                var listItem = document.createElement('li');
+                listItem.textContent = consulta;
+                consultasList.appendChild(listItem);
+            });
+        }
+
+        function populatePacientes() {
+            var pacientesList = document.getElementById('pacientes-list');
+            pacientesList.innerHTML = ''; // Limpa a lista antes de adicionar exemplos
+
+            // Exemplos de pacientes
+            var pacientes = ['Paciente A', 'Paciente B', 'Paciente C'];
+
+            pacientes.forEach(function (paciente) {
+                var listItem = document.createElement('li');
+                listItem.textContent = paciente;
+                pacientesList.appendChild(listItem);
+            });
+        }
+
+        function populateHoras() {
+            var horasList = document.getElementById('horas-list');
+            horasList.innerHTML = ''; // Limpa a lista antes de adicionar exemplos
+
+            // Exemplos de horas disponíveis
+            var horas = ['10:00', '14:30', '16:45'];
+
+            horas.forEach(function (hora) {
+                var listItem = document.createElement('li');
+                listItem.textContent = 'Horário disponível - ' + hora;
+                horasList.appendChild(listItem);
+            });
+        }
+
+        function goHome() {
+            // Adicione a lógica para redirecionar à página inicial
+            window.location.href = "inicio";
+        }
+    </script>
+</body>
+</html>
